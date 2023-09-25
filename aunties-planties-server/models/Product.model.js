@@ -45,6 +45,10 @@ const productSchema = new Schema(
                 required: true,
             },
         },
+        category: {
+            type: [String],
+            required: true,
+        },
         placement: {
             type: String,
             enum: ['indoor', 'outdoor', 'versatile'],
