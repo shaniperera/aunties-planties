@@ -8,12 +8,19 @@ const orderSchema = new Schema(
         products: {
             type: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
         },
+        quantity: {
+            type: Number,
+            required: true
+        },
         totalPrice: {
             type: Number,
+            required: true
         },
         status: {
             type: String,
-            enum: ['fulfilled', 'open']
+            enum: ['fulfilled', 'pending'],
+            default: "pending",
+            requires: true
         }
     },
     {
