@@ -24,16 +24,6 @@ router.post("/products", (req, res, next) => {
         .catch(err => res.json(err));
 });
 
-//  GET /api/products/:productId -  Retrieves a specific products by id
-router.get('/products/:productId', (req, res, next) => {
-    const { productId } = req.params;
-    console.log("prod id ====", productId)
-
-    Product.findById(productId)
-        .then(product => res.status(200).json(product))
-        .catch(error => res.json(error));
-});
-
 //TODO only admin!
 // DELETE  /api/products/:productId  -  Deletes a specific product by id
 router.delete('/products/:productId', (req, res, next) => {
@@ -51,6 +41,16 @@ router.put('/products/:productId', (req, res, next) => {
 
     Product.findByIdAndUpdate(productId, req.body, { new: true })
         .then((updatedProduct) => res.json(updatedProduct))
+        .catch(error => res.json(error));
+});
+
+//  GET /api/products/:productId -  Retrieves a specific products by id
+router.get('/products/:productId', (req, res, next) => {
+    const { productId } = req.params;
+    console.log("prod id ====", productId)
+
+    Product.findById(productId)
+        .then(product => res.status(200).json(product))
         .catch(error => res.json(error));
 });
 
