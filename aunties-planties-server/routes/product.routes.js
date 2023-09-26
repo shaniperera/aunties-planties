@@ -24,16 +24,6 @@ router.post("/products", (req, res, next) => {
         .catch(err => res.json(err));
 });
 
-//  GET /api/products/:productId -  Retrieves a specific products by id
-router.get('/products/:productId', (req, res, next) => {
-    const { productId } = req.params;
-    console.log("prod id ====", productId)
-
-    Product.findById(productId)
-        .then(product => res.status(200).json(product))
-        .catch(error => res.json(error));
-});
-
 //TODO only admin!
 // DELETE  /api/products/:productId  -  Deletes a specific product by id
 router.delete('/products/:productId', (req, res, next) => {
@@ -54,26 +44,22 @@ router.put('/products/:productId', (req, res, next) => {
         .catch(error => res.json(error));
 });
 
-//TODO multi filtering
+//  GET /api/products/:productId -  Retrieves a specific products by id
+router.get('/products/:productId', (req, res, next) => {
+    const { productId } = req.params;
+    console.log("prod id ====", productId)
+
+    Product.findById(productId)
+        .then(product => res.status(200).json(product))
+        .catch(error => res.json(error));
+});
+
 // GET /api/products -  Retrieves all products
 router.get('/products', (req, res, next) => {
-    const { pets, plantCategory } = req.query;
 
-    if (pets) {
-        Product.find({ petFriendly: { $eq: pets } })
-            .then(filtered => res.json(filtered))
-            .catch(err => res.json(err));
-    }
-    // else if (plantCategory) {
-    //     Product.find({ category: { $in: [plantCategory] } })
-    //         .then(filtered => res.json(filtered))
-    //         .catch(err => res.json(err));
-    // }
-    else {
-        Product.find()
-            .then(allProducts => res.json(allProducts))
-            .catch(err => res.json(err));
-    }
+    Product.find()
+        .then(allProducts => res.json(allProducts))
+        .catch(err => res.json(err));
 
 });
 
