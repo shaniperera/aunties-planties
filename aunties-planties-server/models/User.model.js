@@ -8,25 +8,51 @@ const userSchema = new Schema(
       trim: true,
       unique: true
     },
-    passwordHash: {
+    password: {
       type: String,
       required: [true, 'Password is required.']
     },
-    userName: {
+    name: {
       type: String,
       required: [true, "Username is required."],
       unique: true,
-      min: 5
+      min: 6
     },
     isAdmin: {
       type: Boolean,
       default: false,
-      required: true
+      // required: true
     },
     favourites: {
       type: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
     },
+    // cart: {
+    //   type: [{
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Product',
+    //     quantity: {
+    //       type: Number,
+    //       // required: true
+    //     },
+    //   }]
+    // }
+
+    cart: [
+      {
+        _id: false,
+        productId: {
+          type: Schema.Types.ObjectId,
+          ref: 'Product'
+        },
+        quantity: Number
+      }
+    ],
+    cartTotal: {
+      type: Number
+    }
+
   },
+
   {
     timestamps: true,
   }

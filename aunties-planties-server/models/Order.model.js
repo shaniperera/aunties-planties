@@ -5,10 +5,10 @@ const orderSchema = new Schema(
         user: {
             type: { type: Schema.Types.ObjectId, ref: 'User' }
         },
-        cart: {
-            type:
-                { type: Schema.Types.ObjectId, ref: 'Cart' }
-        },
+        // cart: {
+        //     type:
+        //         { type: Schema.Types.ObjectId, ref: 'Cart' }
+        // },
         totalPrice: {
             type: Number,
             required: true
@@ -26,3 +26,9 @@ const orderSchema = new Schema(
 );
 
 module.exports = model('Order', orderSchema);
+
+
+// {
+//     "productId": "6511faa28b93d018bb5065fb",
+//     "quantity": 3
+// }

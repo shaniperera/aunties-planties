@@ -58,7 +58,11 @@ router.get('/products/:productId', (req, res, next) => {
 router.get('/products', (req, res, next) => {
 
     Product.find()
-        .then(allProducts => res.json(allProducts))
+        .then(allProducts => {
+            console.log(allProducts)
+
+            res.status(200).json(allProducts)
+        })
         .catch(err => res.json(err));
 
 });
