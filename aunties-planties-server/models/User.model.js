@@ -44,7 +44,15 @@ const userSchema = new Schema(
           type: Schema.Types.ObjectId,
           ref: 'Product'
         },
-        quantity: Number
+        quantity: {
+          type: Number,
+          required: true,
+          default: 1
+        },
+        productTotal: {
+          type: Number,
+          default: 0
+        }
       }
     ],
     cartTotal: {
