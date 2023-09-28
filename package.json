@@ -1,0 +1,16 @@
+{
+  "name": "project-aunties-planties",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  "fullstack": "concurrently --kill-others \"npm --prefix ./aunties-planties-server run dev\" \"npm --prefix ./aunties-planties-client run dev\"",
+    "i:front": "npm --prefix ./aunties-planties-client install"
+},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.1"
+  }
+}
