@@ -83,7 +83,6 @@ router.delete('/user/cart', isAuthenticated, (req, res) => {
             const indexToDelete = currentUser.cart.findIndex(item => item.productId.toString() === prodToDelete.productId);
             console.log("indexToDelete: ", indexToDelete)
             if (indexToDelete !== -1) {
-                console.log("Index is not -1")
                 currentUser.cart.splice(indexToDelete, 1);
                 return currentUser.save().then(() => {
                     res.status(201).json(currentUser.cart);
