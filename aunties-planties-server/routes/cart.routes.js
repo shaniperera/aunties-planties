@@ -1,10 +1,9 @@
 const router = require("express").Router();
 const Product = require("../models/Product.model");
 const User = require("../models/User.model");
-const { isAuthenticated } = require("../middleware/jwt.middleware");
 
 //GET user's cart
-router.get('/user/cart', isAuthenticated, (req, res) => {
+router.get('/user/cart', (req, res) => {
 
     const { _id } = req.payload;
 
@@ -22,7 +21,7 @@ router.get('/user/cart', isAuthenticated, (req, res) => {
 })
 
 //POST: to add/update cart
-router.post('/user/cart', isAuthenticated, (req, res) => {
+router.post('/user/cart', (req, res) => {
     const { _id } = req.payload; // logged in userId
     const prodToAdd = { productId: req.body.productId, quantity: req.body.quantity }
 
@@ -63,7 +62,7 @@ router.post('/user/cart', isAuthenticated, (req, res) => {
 })
 
 //POST : delete product from cart
-router.delete('/user/cart', isAuthenticated, (req, res) => {
+router.delete('/user/cart', (req, res) => {
 
     const { _id } = req.payload;
     const prodToDelete = { productId: req.body.productId }
