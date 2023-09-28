@@ -31,7 +31,7 @@ const productSchema = new Schema(
             type: Boolean,
             required: true,
         },
-        feedingRquirements: {
+        feedingRequirements: {
             water: {
                 type: String,
                 required: true,
