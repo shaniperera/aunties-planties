@@ -13,7 +13,7 @@ function ProductDetailsPage() {
     // and retrieves the product by id
     const getProduct = () => {
         axios
-            .get(`${API_URL}/api/products/${productId}`)
+            .get(`${API_URL}/products/${productId}`)
             .then((response) => {
                 const oneProduct = response.data;
                 setProduct(oneProduct);
