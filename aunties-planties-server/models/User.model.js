@@ -18,10 +18,14 @@ const userSchema = new Schema(
       unique: true,
       min: 6
     },
+    avatarUrl: {
+      type: String,
+      default: "https://res.cloudinary.com/ddezxiyvb/image/upload/v1695907857/aunties-planties/defaultAvatar.jpg",
+    },
     isAdmin: {
       type: Boolean,
       default: false,
-      // required: true
+      required: true
     },
     favourites: {
       type: [{ type: Schema.Types.ObjectId, ref: 'Product' }],

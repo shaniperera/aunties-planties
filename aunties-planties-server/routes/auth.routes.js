@@ -16,7 +16,7 @@ const { isAuthenticated } = require("../middleware/jwt.middleware.js");
 // How many rounds should bcrypt run the salt (default - 10 rounds)
 const saltRounds = 10;
 
-// POST /auth/signup  - Creates a new user in the database
+// POST /auth/signup
 router.post("/signup", (req, res, next) => {
   const { email, password, name } = req.body;
 
@@ -62,10 +62,10 @@ router.post("/signup", (req, res, next) => {
     })
     .then((createdUser) => {
       // Deconstruct the newly created user object 
-      const { email, name, _id } = createdUser;
+      const { email, name, _id, avatarUrl, isAdmin, favourites } = createdUser;
 
       // Create a new object that doesn't expose the password
-      const user = { email, name, _id };
+      const user = { email, name, _id, avatarUrl, isAdmin, favourites };
 
       // Send a json response containing the user object
       res.status(201).json({ user: user });
@@ -79,7 +79,7 @@ router.post("/login", (req, res, next) => {
 
   // Check if email or password are provided as empty string
   if (email === "" || password === "") {
-    res.status(400).json({ message: "Provide email and password." });
+    res.status(400).json({ message: "Provide email and password 🍃" });
     return;
   }
 
@@ -88,7 +88,7 @@ router.post("/login", (req, res, next) => {
     .then((foundUser) => {
       if (!foundUser) {
         // If the user is not found, send an error response
-        res.status(401).json({ message: "User not found." });
+        res.status(401).json({ message: "User not found 🥀" });
         return;
       }
 
@@ -97,10 +97,10 @@ router.post("/login", (req, res, next) => {
 
       if (passwordCorrect) {
         // Deconstruct the user object to omit the password
-        const { _id, email, name, isAdmin, favourites } = foundUser;
+        const { _id, email, name } = foundUser;
 
         // Create an object that will be set as the token payload
-        const payload = { _id, email, name, isAdmin, favourites };
+        const payload = { _id, email, name };
 
         // Create a JSON Web Token and sign it
         const authToken = jwt.sign(payload, process.env.TOKEN_SECRET, {
