@@ -26,16 +26,6 @@ const userSchema = new Schema(
     favourites: {
       type: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
     },
-    // cart: {
-    //   type: [{
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Product',
-    //     quantity: {
-    //       type: Number,
-    //       // required: true
-    //     },
-    //   }]
-    // }
 
     cart: [
       {
@@ -49,18 +39,13 @@ const userSchema = new Schema(
           required: true,
           default: 1
         },
-        productTotal: {
-          type: Number,
-          default: 0
-        }
+        // productTotal: {
+        //   type: Number,
+        //   default: 0
+        // }
       }
     ],
-    cartTotal: {
-      type: Number
-    }
-
   },
-
   {
     timestamps: true,
   }
