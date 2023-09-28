@@ -17,7 +17,6 @@ router.get('/user/cart', (req, res) => {
             }
         })
         .catch(err => res.json(err));
-    console.log(`Product: ${User.totalProduct}`);
 })
 
 //POST: to add/update cart
