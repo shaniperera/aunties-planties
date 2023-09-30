@@ -31,7 +31,7 @@ function CartProviderWrapper(props) {
     }
     useEffect(() => {
         getCartTotalQty();
-    }, []);
+    }, [cartQuantity]);
 
     return (
         <CartContext.Provider value={{ getCartTotalQty, cartQuantity }}>

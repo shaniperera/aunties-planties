@@ -10,7 +10,6 @@ const API_URL = "http://localhost:5005/api";
 function CartPage() {
     const [cartProducts, setCartProducts] = useState([]);
 
-
     const handleDeleteProduct = (e, productId) => {
         e.preventDefault();
         const storedToken = localStorage.getItem("authToken");
@@ -39,18 +38,20 @@ function CartPage() {
         return product.productId.price * product.quantity;
     }
 
-    let cartTotal = cartProducts.reduce((acc, curr) => {
-        // console.log(acc, curr.productId.price, curr.quantity)
-        return acc + curr.productId.price * curr.quantity;
 
-    }, 0);
+    const calculateCartTotal = (cartProducts) => {
+        let cartTotal = cartProducts.reduce((acc, curr) => {
+            return acc + curr.productId.price * curr.quantity;
+        }, 0);
+        return cartTotal;
+    }
 
     let shippingFee = 10;
     // We set this effect will run only once, after the initial render
     // by setting the empty dependency array - []
     useEffect(() => {
         getCart();
-    }, [setCartProducts]);
+    }, []);
 
     return (
         <div className="CartPage">
@@ -64,31 +65,33 @@ function CartPage() {
                 </>
             }
 
-            <Table className="cart-table" striped bordered hover variant="light">
-                <tbody>
-                    {cartProducts.map((product) =>
-                        <tr key={product.productId._id}>
-                            <td>
-                                <CartItem cartTotal={cartTotal} prodItemTotal={getProductItemTotal} delProduct={handleDeleteProduct} product={product} />
-                            </td>
-                        </tr>
-                    )
-                    }
-                </tbody>
-            </Table>
-            <aside className="cart-total-aside">
-                <h5>Cart summary: </h5>
-                <p>Subtotal: ${cartTotal}</p>
+            {cartProducts &&
+                <>
+                    <Table className="cart-table" striped bordered hover variant="light">
+                        <tbody>
+                            {cartProducts.map((product) =>
+                                <tr key={product.productId._id}>
+                                    <td>
+                                        <CartItem cartTotal={calculateCartTotal(cartProducts)} prodItemTotal={getProductItemTotal} delProduct={handleDeleteProduct} product={product} />
+                                    </td>
+                                </tr>
+                            )
+                            }
+                        </tbody>
+                    </Table>
+                    <aside className="cart-total-aside">
+                        <h5>Cart summary: </h5>
+                        <p>Subtotal: {calculateCartTotal(cartProducts)}</p>
 
-                <p>Shipping: ${shippingFee}</p>
-                <hr />
-                <h5> Total: ${cartTotal + shippingFee}</h5>
-
-                <Button>
-                    Proceed to checkout
-                </Button>
-
-            </aside>
+                        <p>Shipping: ${shippingFee}</p>
+                        <hr />
+                        <h5> Total: ${calculateCartTotal(cartProducts) + shippingFee}</h5>
+                        <Button>
+                            Proceed to checkout
+                        </Button>
+                    </aside>
+                </>
+            }
         </div>
     )
 }

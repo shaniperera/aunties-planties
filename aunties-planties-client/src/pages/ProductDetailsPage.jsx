@@ -98,10 +98,6 @@ function ProductDetailsPage() {
 
                     <Counter incQty={handleIncQuantity} decQty={handleDecQuantity} qty={quantity} />
 
-                    {/* <button onClick={() => setQuantity((prevQuantity) => prevQuantity + 1)}> + </button>
-                    <h6>{quantity} </h6>
-                    <button disabled={quantity <= 1} onClick={() => setQuantity((prevQuantity) => prevQuantity - 1)}> - </button> */}
-
                     <Link>
                         {
                             isLoggedIn &&
