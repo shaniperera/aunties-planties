@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import { Card, Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
+import ProductCard from "../components/ProductCard";
 
 const API_URL = "http://localhost:5005/api";
 
@@ -26,26 +25,29 @@ function ProductListPage() {
     }, []);
 
     return (
-        products.map((product) => {
-            return (
-                <Card style={{ width: '13rem' }} key={product._id}>
-                    <Card.Img variant="top" src={product.imageUrl} alt={product.name} />
-                    <Card.Body>
-                        <Card.Title>{product.name}</Card.Title>
-                        <Card.Text>
-                            ${product.price}
-                        </Card.Text>
-                        <Link to={`/products/${product._id}`}>
-                            <Button variant="primary">View
-                            </Button>
-                        </Link>
-                    </Card.Body>
-                </Card>
-            )
-        }
-        )
+        <div className="ProjectListPage">
+            {products.map((product) => (
+                <ProductCard key={product._id} {...product} />
+            ))}
+        </div>
     )
 }
 
+
+// products.map((product) => {
+// <Card style={{ width: '13rem' }} key={product._id}>
+//     <Card.Img variant="top" src={product.imageUrl} alt={product.name} />
+//     <Card.Body>
+//         <Card.Title>{product.name}</Card.Title>
+//         <Card.Text>
+//             ${product.price}
+//         </Card.Text>
+//         <Link to={`/products/${product._id}`}>
+//             <Button variant="primary">View
+//             </Button>
+//         </Link>
+//     </Card.Body>
+// </Card>
+// }
 
 export default ProductListPage;

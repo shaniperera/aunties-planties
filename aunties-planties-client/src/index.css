@@ -67,3 +67,28 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } */
+
+
+.cart-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+}
+
+.cart-item-img {
+  max-width: 5em;
+  border-radius: 5px;
+align-items: center;
+  padding:0;
+}
+.cart-table {
+  max-width: 60%
+}
+.CartPage {
+  display: flex;
+  justify-content: center;
+  gap: 5em;
+}
+.cart-total-aside {
+align-items: center;
+}
