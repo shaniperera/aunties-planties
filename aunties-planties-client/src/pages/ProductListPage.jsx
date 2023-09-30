@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { Card, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const API_URL = "http://localhost:5005/api";
 
@@ -23,28 +25,27 @@ function ProductListPage() {
         getAllProducts();
     }, []);
 
-
     return (
-        <div className="ProductListPage">
-
-            {products.map((product) => {
-                return (
-                    <div className="ProductCard card" key={product._id} >
-
+        products.map((product) => {
+            return (
+                <Card style={{ width: '13rem' }} key={product._id}>
+                    <Card.Img variant="top" src={product.imageUrl} alt={product.name} />
+                    <Card.Body>
+                        <Card.Title>{product.name}</Card.Title>
+                        <Card.Text>
+                            ${product.price}
+                        </Card.Text>
                         <Link to={`/products/${product._id}`}>
-                            <img src={product.
-                                imageUrl} alt={product.name} />
-                            <h4>{product.name}</h4>
-
+                            <Button variant="primary">View
+                            </Button>
                         </Link>
-                        <p>${product.price}</p>
-                        <button>Add to Cart</button>
-                    </div>
-                );
-            })}
-
-        </div>
-    );
+                    </Card.Body>
+                </Card>
+            )
+        }
+        )
+    )
 }
+
 
 export default ProductListPage;
