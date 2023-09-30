@@ -1,7 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 
-import Navbar from "./components/Navbar";
+import Navigation from "./components/Navigation";
 import HomePage from "./pages/HomePage";
 import ProductListPage from "./pages/ProductListPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
 
-      <Navbar />
+      <Navigation />
 
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -23,9 +23,6 @@ function App() {
         <Route path="/user/cart" element={<CartPage />} />
         <Route path="/auth/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
-
-
-
 
       </Routes>
 

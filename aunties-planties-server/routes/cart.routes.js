@@ -60,10 +60,10 @@ router.post('/user/cart', (req, res) => {
         .catch(err => res.json(err));
 })
 
-//POST : delete product from cart
-router.delete('/user/cart', (req, res) => {
-
+// PUT: Delete product from cart
+router.put('/user/cart', (req, res) => {
     const { _id } = req.payload;
+    // console.log(req.body, _id)
     const prodToDelete = { productId: req.body.productId }
 
     let currentUser;

@@ -11,7 +11,9 @@ root.render(
   <React.StrictMode>
     <Router>
       <AuthProviderWrapper>
+        {/* <CartProvider> */}
         <App />
+        {/* </CartProvider> */}
       </AuthProviderWrapper>
     </Router>
   </React.StrictMode>
