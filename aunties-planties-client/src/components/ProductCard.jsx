@@ -13,13 +13,11 @@ function ProductCard({ name, imageUrl, price, _id, inStock }) {
                     ${price}
                 </Card.Text>
 
-
                 {!inStock &&
                     <Card.Text style={{ color: 'red' }}>
                         Out of stock
                     </Card.Text>
                 }
-
                 <Link to={`/products/${_id}`}>
                     <Button variant="primary">View
                     </Button>

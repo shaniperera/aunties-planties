@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../context/auth.context";
 import { CartContext } from "../context/cart.context";
 import { Nav, Navbar, Container, Button } from 'react-bootstrap';
@@ -9,14 +9,6 @@ function Navigation() {
     // subscribe to the AuthContext to gain access to values from AuthContext.Provider `value` prop
     const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
     const { cartQuantity } = useContext(CartContext);
-
-    // let totalQty = 0;
-    // for (let i = 0; i < cartQuantity.length; i++) {
-    //     console.log("cart item:", cartQuantity[i], cartQuantity[i].quantity);
-    //     totalQty += cartQuantity[i].quantity
-    // }
-
-    // console.log("calculated qty: ", totalQty)
 
     return (
 
@@ -34,10 +26,11 @@ function Navigation() {
                     )}
                     {isLoggedIn && (
                         <>
-                            <Nav.Link href="/user/cart"> 🛒 {cartQuantity} plants in the cart</Nav.Link>
-                            <Nav.Link>{user && user.name}</Nav.Link>
-                            {/* <Nav.Link>{cartQuantity} plants in the cart</Nav.Link> */}
+                            <Nav.Link href="/user/cart">
+                                🛒 {cartQuantity && <p>{cartQuantity}</p>}
+                            </Nav.Link>
 
+                            <Nav.Link>{user && user.name}</Nav.Link>
                             <Button onClick={logOutUser}>Logout</Button>
                         </>
                     )}
