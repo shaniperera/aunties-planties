@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Button, Dropdown } from 'react-bootstrap'
+import { Dropdown } from 'react-bootstrap'
 import ProductCard from "../components/ProductCard";
 import Search from "../components/Search";
 
@@ -8,7 +8,6 @@ const API_URL = "http://localhost:5005/api";
 
 function ProductListPage() {
     const [products, setProducts] = useState([]);
-    const [updatedProducts, setUpdatedProducts] = useState([products]);
     const [sortName, setSortName] = useState("Sort By");
 
     const getAllProducts = () => {
@@ -68,6 +67,7 @@ function ProductListPage() {
                     <Dropdown.Item onClick={sortByNameAtoZ}>Name: a - z</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
+
             <div className="product-list">
                 {products.map((product) => (
                     <ProductCard key={product._id} {...product} />
@@ -77,22 +77,5 @@ function ProductListPage() {
         </div>
     )
 }
-
-
-// products.map((product) => {
-// <Card style={{ width: '13rem' }} key={product._id}>
-//     <Card.Img variant="top" src={product.imageUrl} alt={product.name} />
-//     <Card.Body>
-//         <Card.Title>{product.name}</Card.Title>
-//         <Card.Text>
-//             ${product.price}
-//         </Card.Text>
-//         <Link to={`/products/${product._id}`}>
-//             <Button variant="primary">View
-//             </Button>
-//         </Link>
-//     </Card.Body>
-// </Card>
-// }
 
 export default ProductListPage;

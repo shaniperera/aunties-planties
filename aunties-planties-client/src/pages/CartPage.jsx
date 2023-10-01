@@ -54,7 +54,7 @@ function CartPage() {
     }, []);
 
     return (
-        <div className="CartPage">
+        <div className="cart-page">
             {
                 !cartProducts.length &&
                 <>
