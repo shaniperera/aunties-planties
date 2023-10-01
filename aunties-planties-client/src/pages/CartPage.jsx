@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Button, Table } from 'react-bootstrap';
-import Counter from "../components/Counter";
 import CartItem from "../components/CartItem.jsx";
 
 const API_URL = "http://localhost:5005/api";
@@ -38,12 +37,13 @@ function CartPage() {
         return product.productId.price * product.quantity;
     }
 
-
     const calculateCartTotal = (cartProducts) => {
+
         let cartTotal = cartProducts.reduce((acc, curr) => {
             return acc + curr.productId.price * curr.quantity;
         }, 0);
         return cartTotal;
+
     }
 
     let shippingFee = 10;
@@ -60,12 +60,11 @@ function CartPage() {
                 <>
                     <p>Your cart is empty</p>
                     <Link to="/products">
-                        <button>Show now!</button>
+                        <button>Shop now!</button>
                     </Link>
                 </>
             }
-
-            {cartProducts &&
+            {cartProducts.length &&
                 <>
                     <Table className="cart-table" striped bordered hover variant="light">
                         <tbody>
@@ -89,6 +88,9 @@ function CartPage() {
                         <Button>
                             Proceed to checkout
                         </Button>
+                        <Link to="/products">
+                            Keep Shopping
+                        </Link>
                     </aside>
                 </>
             }
