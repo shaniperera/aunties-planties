@@ -25,13 +25,14 @@ function CartProviderWrapper(props) {
             })
             .catch((error) => {
                 // If the server sends an error response (invalid token) 
+                console.error(error);
                 // Update state variables         
                 setCartQuantity(null)
             });
     }
     useEffect(() => {
         getCartTotalQty();
-    }, [cartQuantity]);
+    }, []);
 
     return (
         <CartContext.Provider value={{ getCartTotalQty, cartQuantity }}>
