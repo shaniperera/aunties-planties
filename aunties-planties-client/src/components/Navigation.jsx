@@ -1,10 +1,9 @@
 import "../Navigation.css"
-import { Link } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../context/auth.context";
 import { CartContext } from "../context/cart.context";
 
-import { Nav, Navbar, NavDropdown, Container, Button } from 'react-bootstrap';
+import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Navigation() {
@@ -15,7 +14,7 @@ function Navigation() {
     return (
         <Navbar className="nav-bar">
 
-            <Navbar.Brand href="#home">Aunties Planties</Navbar.Brand>
+            <Navbar.Brand href="/">Aunties Planties</Navbar.Brand>
 
             {!isLoggedIn && (
                 <>

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 const API_URL = "http://localhost:5005/api";
 
-const CartContext = React.createContext();
+const CartQuantityAddedContext = React.createContext();
 
-function CartProviderWrapper(props) {
+function CartQuantityAddedProviderWrapper(props) {
     const [cartQuantity, setCartQuantity] = useState(0);
 
     const getCartTotalQty = () => {
@@ -40,4 +40,4 @@ function CartProviderWrapper(props) {
         </CartContext.Provider>
     )
 }
-export { CartProviderWrapper, CartContext };
+export { CartQuantityAddedContext, CartQuantityAddedProviderWrapper };

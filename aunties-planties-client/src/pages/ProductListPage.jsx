@@ -32,7 +32,6 @@ function ProductListPage() {
         const sortedName = [...products].sort((a, b) => a.name.localeCompare(b.name));
         setProducts(sortedName);
         setSortName("name: a to z");
-
     };
     const filterProductList = (char) => {
         let filteredProducts;
@@ -70,7 +69,7 @@ function ProductListPage() {
 
             <div className="product-list">
                 {products.map((product) => (
-                    <ProductCard key={product._id} {...product} />
+                    <ProductCard key={product._id} product={product} />
                 ))}
 
             </div>

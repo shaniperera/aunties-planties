@@ -11,38 +11,12 @@ import Spinner from "../components/Spinner";
 const API_URL = "http://localhost:5005/api";
 
 function ProductDetailsPage() {
-    const { isLoggedIn } = useContext(AuthContext);
+
     const [product, setProduct] = useState(null);
-    const [quantity, setQuantity] = useState(1);
     const [isLoading, setIsLoading] = useState(true);
 
-    const loginNotify = () => toast("Login to add products to your cart");
-    const outOfStockNotify = () => toast("Sorry, this plant is current not in stock");
-
-    // Get the URL parameter `:productId` 
+    // // Get the URL parameter `:productId` 
     const { productId } = useParams();
-
-    const handleIncQuantity = () => {
-        setQuantity((prevQuantity) =>
-            prevQuantity + 1);
-    }
-
-    const handleDecQuantity = () => {
-        setQuantity((prevQuantity) =>
-            prevQuantity - 1);
-    }
-
-    const handleAddToCart = (e) => {
-        e.preventDefault();
-        const storedToken = localStorage.getItem("authToken");
-        const requestBody = { productId, quantity };
-
-        axios.post(`${API_URL}/user/cart`, requestBody, { headers: { Authorization: `Bearer ${storedToken}` } })
-            .then((response) => {
-                console.log("Added/updated the following :", response);
-            })
-            .catch((error) => console.log(error));
-    }
 
     // Helper function that makes a GET request to the API
     // and retrieves the product by id
@@ -64,6 +38,11 @@ function ProductDetailsPage() {
     return (
 
         <div className="ProductDetails">
+            <div>
+                <Link to="/products">
+                    View all plants
+                </Link>
+            </div>
             {
                 isLoading &&
                 <>
@@ -95,35 +74,9 @@ function ProductDetailsPage() {
                         <p>Humidity: {product.feedingRequirements?.humidity}</p>
                         <p>Sun: {product.feedingRequirements?.sun}</p>
                     </div>
-
-                    <Counter incQty={handleIncQuantity} decQty={handleDecQuantity} qty={quantity} />
-
-                    <Link>
-                        {
-                            isLoggedIn &&
-                                !product.inStock ?
-                                <>
-                                    <Button className="add-to-cart" onClick={outOfStockNotify} variant="success">Add to cart</Button>
-                                    <ToastContainer />
-                                </>
-                                : isLoggedIn &&
-                                    product.inStock ?
-                                    <>
-                                        <Button className="add-to-cart" onClick={handleAddToCart} variant="success">Add to cart</Button>
-                                        <ToastContainer />
-                                    </>
-                                    :
-                                    <>
-                                        <Button className="add-to-cart" onClick={loginNotify} variant="success">Add to cart</Button>
-                                        <ToastContainer />
-                                    </>
-                        }
-                    </Link>
                 </div>
             )}
-            <Link to="/products">
-                <button>View all products</button>
-            </Link>
+
         </div>
     );
 }
