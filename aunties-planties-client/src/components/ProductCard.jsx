@@ -8,24 +8,26 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from "../context/auth.context";
+import { ProductQuantityContext } from '../context/productQuantity.context';
 
 
 const API_URL = "http://localhost:5005/api";
 
 function ProductCard({ product }) {
     const { isLoggedIn } = useContext(AuthContext);
-    const [quantity, setQuantity] = useState(1);
+    const [qtyAdded, setQtyAdded] = useState(ProductQuantityContext);
+    // const [quantity, setQuantity] = useState(1);
     const [addedToCart, setAddedToCart] = useState(false);
     const loginNotify = () => toast("Login to add products to your cart");
     const outOfStockNotify = () => toast("Sorry, this plant is current not in stock");
 
     const handleIncQuantity = () => {
-        setQuantity((prevQuantity) =>
+        setQtyAdded((prevQuantity) =>
             prevQuantity + 1);
     }
 
     const handleDecQuantity = () => {
-        setQuantity((prevQuantity) =>
+        setQtyAdded((prevQuantity) =>
             prevQuantity - 1);
     }
 
@@ -62,7 +64,7 @@ function ProductCard({ product }) {
                         isLoggedIn &&
                             !product.inStock ?
                             <>
-                                <Counter incQty={handleIncQuantity} decQty={handleDecQuantity} qty={quantity} />
+                                <Counter incQty={handleIncQuantity} decQty={handleDecQuantity} qty={qtyAdded} />
 
                                 <Button className="add-to-cart" onClick={outOfStockNotify} variant="success">Add to cart</Button>
                                 <ToastContainer />
@@ -75,7 +77,7 @@ function ProductCard({ product }) {
                                         <Card.Text className="add-to-cart">Added to cart</Card.Text>
                                         :
                                         <>
-                                            <Counter incQty={handleIncQuantity} decQty={handleDecQuantity} qty={quantity} />
+                                            <Counter incQty={handleIncQuantity} decQty={handleDecQuantity} qty={qtyAdded} />
 
                                             <Button className="add-to-cart" onClick={handleAddToCart} variant="success">Add to cart</Button>
                                         </>
@@ -85,7 +87,7 @@ function ProductCard({ product }) {
                                 </>
                                 :
                                 <>
-                                    <Counter incQty={handleIncQuantity} decQty={handleDecQuantity} qty={quantity} />
+                                    <Counter incQty={handleIncQuantity} decQty={handleDecQuantity} qty={qtyAdded} />
                                     <Button className="add-to-cart" onClick={loginNotify} variant="success">Add to cart</Button>
                                     <ToastContainer />
                                 </>

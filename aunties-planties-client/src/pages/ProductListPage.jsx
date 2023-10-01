@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
+import "../ProductPage.css"
 import axios from "axios";
-import { Dropdown } from 'react-bootstrap'
+import { Nav, Dropdown } from 'react-bootstrap'
 import ProductCard from "../components/ProductCard";
 import Search from "../components/Search";
 
@@ -33,7 +34,7 @@ function ProductListPage() {
         setProducts(sortedName);
         setSortName("name: a to z");
     };
-    const filterProductList = (char) => {
+    const searchProductList = (char) => {
         let filteredProducts;
 
         if (char === "") {
@@ -46,6 +47,39 @@ function ProductListPage() {
         setProducts(filteredProducts);
     };
 
+    const filterIndoor = () => {
+
+        let list = []
+        for (let i = 0; i < products.length; i++) {
+            if (products[i].category.includes("indoor")) {
+                list.push(products[i])
+            }
+        }
+        setProducts(list);
+    }
+
+    const filterOutdoor = () => {
+
+        let list = []
+        for (let i = 0; i < products.length; i++) {
+            if (products[i].category.includes("outdoor")) {
+                list.push(products[i])
+            }
+        }
+        setProducts(list);
+    }
+
+    const filterGifts = () => {
+
+        let list = []
+        for (let i = 0; i < products.length; i++) {
+            if (products[i].category.includes("gifts")) {
+                list.push(products[i])
+            }
+        }
+        setProducts(list);
+    }
+
     // We set this effect will run only once, after the initial render
     // by setting the empty dependency array - []
     useEffect(() => {
@@ -54,7 +88,7 @@ function ProductListPage() {
 
     return (
         <div className="ProjectListPage">
-            <Search filterSearchHandler={filterProductList} />
+            <Search className="search-bar" filterSearchHandler={searchProductList} />
 
             <Dropdown className="product-sort">
                 <Dropdown.Toggle variant="secondary" id="dropdown-basic">
@@ -66,6 +100,22 @@ function ProductListPage() {
                     <Dropdown.Item onClick={sortByNameAtoZ}>Name: a - z</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
+
+            {/* <div>
+
+                <Nav.Link onClick={filterIndoor}>
+                    Indoor plant
+                </Nav.Link>
+                <Nav.Link onClick={filterOutdoor}>
+                    Outdoor plant
+                </Nav.Link>
+
+                <Nav.Link onClick={filterGifts}>
+                    Gifts
+                </Nav.Link>
+
+            </div> */}
+
 
             <div className="product-list">
                 {products.map((product) => (

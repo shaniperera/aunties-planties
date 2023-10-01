@@ -14,10 +14,9 @@ function CartItem({ product, delProduct, prodItemTotal }) {
             <Counter />
 
             <h6>${prodItemTotal(product)}</h6>
+            <button>Update</button>
         </div>
     )
 }
 
 export default CartItem;
-
-// style = {{ width: "100px" }}
