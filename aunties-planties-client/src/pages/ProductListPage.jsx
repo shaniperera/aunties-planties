@@ -11,14 +11,17 @@ function ProductListPage() {
     const [products, setProducts] = useState([]);
     const [sortName, setSortName] = useState("Sort By");
 
-    const getAllProducts = () => {
+    // We set this effect will run only once, after the initial render
+    // by setting the empty dependency array - []
+    useEffect(() => {
         axios
             .get(`${API_URL}/products`)
             .then((response) => {
                 setProducts(response.data)
             })
             .catch((error) => console.log(error));
-    };
+    }, []);
+    // sort filters
     const sortByPriceLowHigh = () => {
         const sortedPrice = [...products].sort((a, b) => a.price - b.price)
         setProducts(sortedPrice);
@@ -34,6 +37,7 @@ function ProductListPage() {
         setProducts(sortedName);
         setSortName("name: a to z");
     };
+    // search 
     const searchProductList = (char) => {
         let filteredProducts;
 
@@ -47,44 +51,36 @@ function ProductListPage() {
         setProducts(filteredProducts);
     };
 
-    const filterIndoor = () => {
+    // const filterIndoor = () => {
+    //     let list = []
+    //     for (let i = 0; i < products.length; i++) {
+    //         if (products[i].category.includes("indoor")) {
+    //             list.push(products[i])
+    //         }
+    //     }
+    //     setProducts(list);
+    // }
 
-        let list = []
-        for (let i = 0; i < products.length; i++) {
-            if (products[i].category.includes("indoor")) {
-                list.push(products[i])
-            }
-        }
-        setProducts(list);
-    }
+    // const filterOutdoor = () => {
+    //     let list = []
+    //     for (let i = 0; i < products.length; i++) {
+    //         if (products[i].category.includes("outdoor")) {
+    //             list.push(products[i])
+    //         }
+    //     }
+    //     setProducts(list);
+    // }
 
-    const filterOutdoor = () => {
+    // const filterGifts = () => {
 
-        let list = []
-        for (let i = 0; i < products.length; i++) {
-            if (products[i].category.includes("outdoor")) {
-                list.push(products[i])
-            }
-        }
-        setProducts(list);
-    }
-
-    const filterGifts = () => {
-
-        let list = []
-        for (let i = 0; i < products.length; i++) {
-            if (products[i].category.includes("gifts")) {
-                list.push(products[i])
-            }
-        }
-        setProducts(list);
-    }
-
-    // We set this effect will run only once, after the initial render
-    // by setting the empty dependency array - []
-    useEffect(() => {
-        getAllProducts();
-    }, []);
+    //     let list = []
+    //     for (let i = 0; i < products.length; i++) {
+    //         if (products[i].category.includes("gifts")) {
+    //             list.push(products[i])
+    //         }
+    //     }
+    //     setProducts(list);
+    // }
 
     return (
         <div className="ProjectListPage">
@@ -102,7 +98,6 @@ function ProductListPage() {
             </Dropdown>
 
             {/* <div>
-
                 <Nav.Link onClick={filterIndoor}>
                     Indoor plant
                 </Nav.Link>
@@ -113,9 +108,7 @@ function ProductListPage() {
                 <Nav.Link onClick={filterGifts}>
                     Gifts
                 </Nav.Link>
-
             </div> */}
-
 
             <div className="product-list">
                 {products.map((product) => (

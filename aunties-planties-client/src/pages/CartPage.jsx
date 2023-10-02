@@ -8,11 +8,11 @@ const API_URL = "http://localhost:5005/api";
 
 function CartPage() {
     const [cartProducts, setCartProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const handleDeleteProduct = (e, productId) => {
         e.preventDefault();
         const storedToken = localStorage.getItem("authToken");
-
         const requestBody = { productId };
 
         axios.put(`${API_URL}/user/cart`, requestBody, { headers: { Authorization: `Bearer ${storedToken}` } })
@@ -30,7 +30,8 @@ function CartPage() {
             .then((response) => {
                 setCartProducts(response.data)
             })
-            .catch((error) => console.log(error));
+            .catch((error) => console.log(error))
+            .finally(() => setLoading(false));
     };
 
     const getProductItemTotal = (product) => {
@@ -38,7 +39,6 @@ function CartPage() {
     }
 
     const calculateCartTotal = (cartProducts) => {
-
         let cartTotal = cartProducts.reduce((acc, curr) => {
             return acc + curr.productId.price * curr.quantity;
         }, 0);
@@ -52,6 +52,10 @@ function CartPage() {
     useEffect(() => {
         getCart();
     }, []);
+
+    if (loading) {
+        return <div>loading...</div>
+    }
 
     return (
         <div className="cart-page">
@@ -71,7 +75,7 @@ function CartPage() {
                             {cartProducts.map((product) =>
                                 <tr key={product.productId._id}>
                                     <td>
-                                        <CartItem cartTotal={calculateCartTotal(cartProducts)} prodItemTotal={getProductItemTotal} delProduct={handleDeleteProduct} product={product} />
+                                        <CartItem getCart={getCart} cartTotal={calculateCartTotal(cartProducts)} prodItemTotal={getProductItemTotal} delProduct={handleDeleteProduct} product={product} />
                                     </td>
                                 </tr>
                             )

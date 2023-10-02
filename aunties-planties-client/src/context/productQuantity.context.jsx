@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+// import { createContext, useState } from "react";
 
-const ProductQuantityContext = React.createContext();
+// const ProductQuantityContext = createContext();
 
-function ProductQuantityProviderWrapper(props) {
-    const [qtyAdded, setQtyAdded] = useState(1);
-    return (
-        <ProductQuantityContext.Provider value={{ qtyAdded, setQtyAdded }}>
-            {props.children}
-        </ProductQuantityContext.Provider>
-    )
-}
-export { ProductQuantityContext, ProductQuantityProviderWrapper };
+// function ProductQuantityProviderWrapper(props) {
+//     const [qtyAdded, setQtyAdded] = useState(1);
+
+//     const handleIncQuantity = () => {
+//         setQtyAdded((prevQuantity) =>
+//             prevQuantity + 1);
+//     }
+
+//     const handleDecQuantity = () => {
+//         setQtyAdded((prevQuantity) =>
+//             prevQuantity - 1);
+//     }
+//     return (
+//         <ProductQuantityContext.Provider value={{ qtyAdded, handleIncQuantity, handleDecQuantity }}>
+//             {props.children}
+//         </ProductQuantityContext.Provider>
+//     )
+// }
+// export { ProductQuantityContext, ProductQuantityProviderWrapper };

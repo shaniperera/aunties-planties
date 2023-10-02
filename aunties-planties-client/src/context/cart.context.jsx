@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 const API_URL = "http://localhost:5005/api";
 
-const CartContext = React.createContext();
+const CartContext = createContext();
 
 function CartProviderWrapper(props) {
     const [cartQuantity, setCartQuantity] = useState(0);
+    console.log(cartQuantity)
 
     const getCartTotalQty = () => {
 
@@ -18,7 +19,12 @@ function CartProviderWrapper(props) {
             .then((response) => {
 
                 const userCart = response.data;
-                const sumCartItemQty = userCart.reduce((acc, curr) => acc + curr.quantity, 0)
+                let sumCartItemQty;
+
+                if (userCart.length > 0) {
+
+                    sumCartItemQty = userCart.reduce((acc, curr) => acc + curr.quantity, 0)
+                }
 
                 // Update state variables        
                 setCartQuantity(sumCartItemQty);
@@ -40,4 +46,5 @@ function CartProviderWrapper(props) {
         </CartContext.Provider>
     )
 }
+
 export { CartProviderWrapper, CartContext };
