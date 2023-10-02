@@ -16,6 +16,7 @@ function Search({ filterSearchHandler }) {
                     type="text"
                     onChange={handleSearch}
                     placeholder=" 🔍 Search for plants ..."
+                    className="search-input"
                 />
             </>
         </div>

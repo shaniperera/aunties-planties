@@ -1,23 +1,53 @@
 import { Button, CloseButton } from 'react-bootstrap';
-import Counter from './Counter';
+import { useState, useEffect } from "react";
 
-function CartItem({ product, delProduct, prodItemTotal }) {
+import axios from 'axios';
+// import Counter from './Counter';
+
+const API_URL = "http://localhost:5005/api";
+
+function CartItem({ product, delProduct, prodItemTotal, getCart }) {
+    const [qty, setQty] = useState(product.quantity);
+
+    const handleAddToCart = () => {
+        const storedToken = localStorage.getItem("authToken");
+        const requestBody = { productId: product.productId._id, quantity: qty };
+        axios.post(`${API_URL}/user/cart`, requestBody, { headers: { Authorization: `Bearer ${storedToken}` } })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => console.log(error));
+    };
+    const handleIncQuantity = () => {
+        setQty((prevQuantity) => prevQuantity + 1);
+    };
+
+    const handleDecQuantity = () => {
+        setQty((prevQuantity) => prevQuantity - 1);
+    };
+
+    // useEffect to handle side-effects after component updates
+    useEffect(() => {
+        handleAddToCart();
+        const timer = setTimeout(() => {
+            getCart();
+        }, 500);
+
+        return () => clearTimeout(timer);
+    }, [qty]);
 
     return (
         <div className="cart-item-row">
-
             <CloseButton onClick={(event) => delProduct(event, product.productId._id)} />
             <img className="cart-item-img" src={product.productId.imageUrl} alt={product.name} />
             <h6>{product.productId.name}</h6>
             <h6>${product.productId.price}</h6>
+            <Button onClick={handleIncQuantity} >+</Button>
             <h6>{product.quantity}</h6>
-            <Counter />
-
+            <Button disabled={product.quantity <= 1} onClick={handleDecQuantity}>-</Button>
             <h6>${prodItemTotal(product)}</h6>
-        </div>
+        </div >
     )
 }
 
 export default CartItem;
-
-// style = {{ width: "100px" }}

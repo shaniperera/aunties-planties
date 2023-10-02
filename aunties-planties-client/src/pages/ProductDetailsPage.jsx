@@ -1,11 +1,8 @@
 import { useState, useEffect, useContext } from "react";
-import { AuthContext } from "../context/auth.context";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import { Button } from 'react-bootstrap';
+import { useParams } from "react-router-dom";
+import { Button, Nav } from 'react-bootstrap';
 import 'react-toastify/dist/ReactToastify.css';
-import Counter from "../components/Counter";
 import Spinner from "../components/Spinner";
 
 const API_URL = "http://localhost:5005/api";
@@ -15,12 +12,11 @@ function ProductDetailsPage() {
     const [product, setProduct] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
-    // // Get the URL parameter `:productId` 
+    // Get the URL parameter `:productId` 
     const { productId } = useParams();
 
-    // Helper function that makes a GET request to the API
-    // and retrieves the product by id
-    const getProduct = () => {
+    useEffect(() => {
+        //  GET request to the API  retrieves the product by id
         axios
             .get(`${API_URL}/products/${productId}`)
             .then((response) => {
@@ -29,24 +25,20 @@ function ProductDetailsPage() {
                 setIsLoading(false);
             })
             .catch((error) => console.log(error));
-    };
-
-    useEffect(() => {
-        getProduct();
-    }, []);
+    }, [productId]);
 
     return (
 
         <div className="ProductDetails">
             <div>
-                <Link to="/products">
+                <Nav.Link href="/products">
                     View all plants
-                </Link>
+                </Nav.Link>
             </div>
             {
                 isLoading &&
                 <>
-                    <h3>Collecting our plants from the greenhouse</h3>
+                    <h3>Collecting the plant from the greenhouse</h3>
                     <Spinner />
                 </>
             }
