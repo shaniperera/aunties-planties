@@ -62,10 +62,10 @@ router.post("/signup", (req, res, next) => {
     })
     .then((createdUser) => {
       // Deconstruct the newly created user object 
-      const { email, name, _id, avatarUrl, isAdmin, favourites } = createdUser;
+      const { email, name, _id } = createdUser;
 
       // Create a new object that doesn't expose the password
-      const user = { email, name, _id, avatarUrl, isAdmin, favourites };
+      const user = { email, name, _id };
 
       // Send a json response containing the user object
       res.status(201).json({ user: user });

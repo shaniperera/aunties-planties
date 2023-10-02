@@ -29,6 +29,9 @@ app.use("/api", productRoutes);
 const cartRoutes = require("./routes/cart.routes");
 app.use("/api", isAuthenticated, cartRoutes);
 
+const stripeRoutes = require("./routes/stripe.routes");
+app.use("/api", isAuthenticated, stripeRoutes)
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 
