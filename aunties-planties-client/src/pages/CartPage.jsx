@@ -7,7 +7,7 @@ import CartItem from "../components/CartItem.jsx";
 import PayButton from "../components/PayButton.jsx";
 import { CartContext } from '../context/cart.context';
 
-const API_URL = "http://localhost:5005/api";
+const API_URL = import.meta.env.VITE_SERVER_URL;
 
 function CartPage() {
     const [cartProducts, setCartProducts] = useState([]);

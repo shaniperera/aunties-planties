@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { Nav } from 'react-bootstrap';
 import 'react-toastify/dist/ReactToastify.css';
 
-const API_URL = "http://localhost:5005/api";
+const API_URL = import.meta.env.VITE_SERVER_URL;
 
 function ProductDetailsPage() {
 

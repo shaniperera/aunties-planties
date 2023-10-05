@@ -5,7 +5,9 @@ import { AuthContext } from "../context/auth.context";
 import { Button } from 'react-bootstrap';
 import { useContext } from "react";
 
-const API_URL = "http://localhost:5005/api";
+const API_URL = import.meta.env.VITE_SERVER_URL;
+
+
 
 function PayButton({ cartItems }) {
     const { user } = useContext(AuthContext);

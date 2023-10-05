@@ -5,7 +5,7 @@ import { Nav, Dropdown } from 'react-bootstrap'
 import ProductCard from "../components/ProductCard";
 import Search from "../components/Search";
 
-const API_URL = "http://localhost:5005/api";
+const API_URL = import.meta.env.VITE_SERVER_URL;
 
 function ProductListPage() {
     const [products, setProducts] = useState([]);
