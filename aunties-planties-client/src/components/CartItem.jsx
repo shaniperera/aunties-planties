@@ -3,9 +3,10 @@ import { useState, useEffect, useContext } from "react";
 import axios from 'axios';
 import { CartContext } from '../context/cart.context';
 
-const API_URL = "http://localhost:5005/api";
+const API_URL = import.meta.env.VITE_SERVER_URL;
 
 function CartItem({ product, delProduct, prodItemTotal, getCart }) {
+    // console.log(import.meta.env.VITE_SERVER_URL, "ssssssssssssssssss")
     const [qty, setQty] = useState(product.quantity);
 
     const handleAddToCart = () => {
