@@ -1,4 +1,6 @@
-import { useState } from "react";
+import "../Search.css"
+
+import { useEffect, useState } from "react";
 
 function Search({ filterSearchHandler }) {
     const [char, setChar] = useState("");
@@ -8,6 +10,10 @@ function Search({ filterSearchHandler }) {
         filterSearchHandler(event.target.value);
     };
 
+    // useEffect(() => {
+    //     filterSearchHandler(char)
+    // }, [char])
+
     return (
         <div className="search-bar">
             <>
@@ -16,7 +22,6 @@ function Search({ filterSearchHandler }) {
                     type="text"
                     onChange={handleSearch}
                     placeholder=" 🔍 Search for plants ..."
-                    className="search-input"
                 />
             </>
         </div>

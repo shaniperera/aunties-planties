@@ -1,0 +1,78 @@
+.cart-container {
+  background-image: url('https://wallpapercave.com/wp/wp6897369.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  padding: 2em;
+}
+.empty-cart-message {
+  background-color: white;
+    padding: 2em;
+    text-align: center;
+    /* border: 1px solid; */
+    border-radius: 4px;
+    margin: 10em 20em
+
+    /* background-color: white;
+    padding: 1em 3em;
+    border-radius: 3px;
+    border: none;
+    font-size: medium;
+    font-weight: 600;
+    margin-left: 1em */
+}
+
+.empty-cart-message button{
+    background-color:rgb(174, 191, 174);
+    padding: 1em 3em;
+    border-radius: 3px;
+    border: none;
+    font-size: medium;
+    font-weight: 600;
+    margin-left: 1em
+}
+.empty-cart-message button:hover {
+ background-color:rgb(174, 191, 174);
+  color: white;
+}
+
+.cart-table-info {
+  display: flex;
+  gap:2em;
+} 
+.cart-table {
+    background-color: white;
+    width: 70%;
+    border-radius: 4px;
+}
+
+.product-card-img {
+  max-height: 12em;
+  align-content: left;
+
+}
+.cart-total-aside {
+    background-color: white;
+    width: 30%;
+    border-radius: 4px;
+    padding: 1em
+}
+
+.cart-total-aside Link {
+    padding: 2em
+}
+
+.cart-item-row{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 3px;
+}
+.cart-item-row img {
+  max-width:4em;
+  /* max-heighxt: 4em; */
+}
+
+tr:hover {
+  background: rgb(238, 234, 234)
+}

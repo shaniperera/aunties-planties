@@ -1,0 +1,74 @@
+
+.hero-section {
+  background-image: url("https://wallpapercave.com/wp/wp6897369.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding:180px 0;
+}
+.hero-section button {
+  background-color: white;
+  padding: 1em 3em;
+  border-radius: 3px;
+  border: none;
+  font-size: medium;
+  font-weight: 600;
+  margin-left: 1em
+
+}
+.hero-section button:hover {
+  background-color: rgb(174, 191, 174);
+  color:white
+}
+.shop-with-us{
+padding: 3em
+}
+.shop-with-us h3 {
+  text-align: center;
+  padding: 1em;
+}
+.why-shop-tiles {
+display: flex;
+justify-content: space-evenly;
+
+}
+
+.why-shop-tiles img {
+ width: 10em;
+}
+.about-us {
+  display: flex;
+  background-color: rgb(174, 191, 174);
+
+}
+
+.about-us-text {
+  width: 50%;
+  float: left;
+  margin: 1em;
+ background-color: rgb(174, 191, 174);
+  text-align: justify; 
+
+}
+
+.about-us-text h2 {
+    padding: 6em 1em  0;
+
+    background-color: rgb(174, 191, 174);
+    color: white;
+}
+.about-us-text p {
+    padding: 0 2em;
+    background-color: rgb(174, 191, 174);
+    color: white;
+}
+
+.about-us-img {
+  width: 50%;
+  float: right; 
+  text-align: justify;
+  /* padding: 3em; */
+} 
+
+.about-us-img img {
+  width: 100%;
+} 

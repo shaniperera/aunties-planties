@@ -1,8 +1,7 @@
 import { Button, CloseButton } from 'react-bootstrap';
-import { useState, useEffect } from "react";
-
+import { useState, useEffect, useContext } from "react";
 import axios from 'axios';
-// import Counter from './Counter';
+import { CartContext } from '../context/cart.context';
 
 const API_URL = "http://localhost:5005/api";
 
@@ -14,16 +13,21 @@ function CartItem({ product, delProduct, prodItemTotal, getCart }) {
         const requestBody = { productId: product.productId._id, quantity: qty };
         axios.post(`${API_URL}/user/cart`, requestBody, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then((response) => {
-                console.log(response);
+
             })
             .catch((error) => console.log(error));
     };
+    const { getCartTotalQty } = useContext(CartContext);
+
     const handleIncQuantity = () => {
         setQty((prevQuantity) => prevQuantity + 1);
+        getCartTotalQty();
     };
 
     const handleDecQuantity = () => {
         setQty((prevQuantity) => prevQuantity - 1);
+        getCartTotalQty();
+
     };
 
     // useEffect to handle side-effects after component updates

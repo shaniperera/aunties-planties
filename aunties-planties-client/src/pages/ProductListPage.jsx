@@ -1,5 +1,5 @@
+import "../ProductListPage.css";
 import { useState, useEffect } from "react";
-import "../ProductPage.css"
 import axios from "axios";
 import { Nav, Dropdown } from 'react-bootstrap'
 import ProductCard from "../components/ProductCard";
@@ -9,46 +9,53 @@ const API_URL = "http://localhost:5005/api";
 
 function ProductListPage() {
     const [products, setProducts] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState([])
     const [sortName, setSortName] = useState("Sort By");
+    const [isLoading, setIsLoading] = useState(true);
 
     // We set this effect will run only once, after the initial render
     // by setting the empty dependency array - []
-    useEffect(() => {
+    const handleFetch = () => {
         axios
             .get(`${API_URL}/products`)
             .then((response) => {
                 setProducts(response.data)
+                setFilteredProducts(response.data)
+                setIsLoading(false);
             })
             .catch((error) => console.log(error));
+    }
+    useEffect(() => {
+        handleFetch()
     }, []);
+
     // sort filters
     const sortByPriceLowHigh = () => {
         const sortedPrice = [...products].sort((a, b) => a.price - b.price)
-        setProducts(sortedPrice);
+        setFilteredProducts(sortedPrice);
         setSortName("price: low to high");
     };
     const sortByPriceHighLow = () => {
         const sortedPrice = [...products].sort((a, b) => b.price - a.price)
-        setProducts(sortedPrice);
+        setFilteredProducts(sortedPrice);
         setSortName("price: high to low");
     };
     const sortByNameAtoZ = () => {
         const sortedName = [...products].sort((a, b) => a.name.localeCompare(b.name));
-        setProducts(sortedName);
+        setFilteredProducts(sortedName);
         setSortName("name: a to z");
     };
     // search 
     const searchProductList = (char) => {
-        let filteredProducts;
-
+        let filtered;
         if (char === "") {
-            filteredProducts = products;
+            filtered = products;
         } else {
-            filteredProducts = products.filter((eachProduct) => {
+            filtered = products.filter((eachProduct) => {
                 return eachProduct.name.toLowerCase().includes(char.toLowerCase());
             });
         }
-        setProducts(filteredProducts);
+        setFilteredProducts(filtered);
     };
 
     // const filterIndoor = () => {
@@ -83,19 +90,31 @@ function ProductListPage() {
     // }
 
     return (
-        <div className="ProjectListPage">
-            <Search className="search-bar" filterSearchHandler={searchProductList} />
+        <div className="project-list-container">
+            {
+                isLoading &&
+                <>
+                    <h3 style={{ color: "white" }}>Collecting the plants from the greenhouse</h3>
+                </>
+            }
+            {
+                !isLoading &&
+                <div className="search-filter">
+                    <Search filterSearchHandler={searchProductList} />
 
-            <Dropdown className="product-sort">
-                <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                    Sorted: {sortName}
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                    <Dropdown.Item onClick={sortByPriceLowHigh} >Price: low to high</Dropdown.Item>
-                    <Dropdown.Item onClick={sortByPriceHighLow}>Price: high to low</Dropdown.Item>
-                    <Dropdown.Item onClick={sortByNameAtoZ}>Name: a - z</Dropdown.Item>
-                </Dropdown.Menu>
-            </Dropdown>
+                    <Dropdown className="product-sort">
+                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                            {sortName}
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            <Dropdown.Item onClick={sortByPriceLowHigh} >Price: low to high</Dropdown.Item>
+                            <Dropdown.Item onClick={sortByPriceHighLow}>Price: high to low</Dropdown.Item>
+                            <Dropdown.Item onClick={sortByNameAtoZ}>Name: a - z</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                </div>
+            }
+
 
             {/* <div>
                 <Nav.Link onClick={filterIndoor}>
@@ -111,7 +130,7 @@ function ProductListPage() {
             </div> */}
 
             <div className="product-list">
-                {products.map((product) => (
+                {filteredProducts.map((product) => (
                     <ProductCard key={product._id} product={product} />
                 ))}
 
