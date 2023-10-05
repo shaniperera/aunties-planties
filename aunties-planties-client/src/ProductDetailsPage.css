@@ -1,11 +1,6 @@
-
 .product-details-container
 {
-    background-image: url('https://wallpapercave.com/wp/wp6897369.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  /* height: 100vh; */
-  padding: 2em;
+  margin: 1em;
 }
 
 .product-details {
@@ -17,6 +12,7 @@
     justify-content: center;
     align-items: center;
      text-align: justify;
+     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)
 }
 
 .product-details img {
@@ -33,7 +29,7 @@
 }
 .all-products-return {
     padding: 2em;
-    color: white;
+    color:rgb(174, 191, 174);
     text-align: center;
     text-transform: uppercase;
 }

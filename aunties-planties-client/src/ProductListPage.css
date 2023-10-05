@@ -1,24 +1,21 @@
-.project-list-container {
-    background-image: url('https://wallpapercave.com/wp/wp6897369.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
+.product-list-container {
+    margin: 1em
+ 
 }
 
  .search-filter{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   padding: 2em;
-  gap:  8em;
- }
- .Dropdown {
-
+  gap:  2em;
  }
 
-.search-bar input{
-  margin-left: 3em;
-  padding: 4px 20em;
-  outline: none;
+.search-bar{
+
+  outline:none;
   border-radius: 3px;
+  width: 10%
  }
 
  .loading-text {
@@ -28,11 +25,9 @@
 
 .product-list {
   display: flex;
-  padding: 1em;
-  gap: 2em; 
+  justify-content: space-evenly;
+  gap: 3em; 
   flex-wrap: wrap;
-  align-content: center;
-  justify-content: left;
   width: 70%;
   margin: 0 auto;
 }

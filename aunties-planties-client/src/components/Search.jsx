@@ -1,5 +1,3 @@
-import "../Search.css"
-
 import { useEffect, useState } from "react";
 
 function Search({ filterSearchHandler }) {
@@ -15,16 +13,15 @@ function Search({ filterSearchHandler }) {
     // }, [char])
 
     return (
-        <div className="search-bar">
-            <>
-                <input
-                    value={char}
-                    type="text"
-                    onChange={handleSearch}
-                    placeholder=" 🔍 Search for plants ..."
-                />
-            </>
-        </div>
+
+        <>
+            <input
+                value={char}
+                type="text"
+                onChange={handleSearch}
+                placeholder=" 🔍 Search for plants ..."
+            />
+        </>
     );
 }
 

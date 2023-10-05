@@ -42,7 +42,7 @@ Aunties Planties is an online store where users can purchase house plants. Users
 ![products-page](./aunties-planties-client/src/assets/all-products.png)
 ![product-details-page](./aunties-planties-client/src/assets/product-detail.png)
 ![cart](./aunties-planties-client/src/assets/cart.png)
-![payment](./aunties-planties-client/src/assets/.png)
+![payment](./aunties-planties-client/src/assets/payment.png)
 
 ## Getting Started
 
