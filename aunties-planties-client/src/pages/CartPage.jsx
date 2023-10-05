@@ -58,7 +58,7 @@ function CartPage() {
     }, []);
 
     if (loading) {
-        return <div>loading...</div>
+        return <h3>Loading your cart... 🪴</h3>
     }
 
     return (

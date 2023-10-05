@@ -10,7 +10,7 @@ const API_URL = "http://localhost:5005/api";
 function ProductDetailsPage() {
 
     const [product, setProduct] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
 
     // Get the URL parameter `:productId` 
     const { productId } = useParams();
@@ -22,13 +22,18 @@ function ProductDetailsPage() {
             .then((response) => {
                 const oneProduct = response.data;
                 setProduct(oneProduct);
-                setIsLoading(false);
             })
-            .catch((error) => console.log(error));
+            .catch((error) => console.log(error))
+            .finally(() => setLoading(false));
     }, [productId]);
+    {
+        loading &&
+            <>
+                <h3>Collecting the plant from the greenhouse ..</h3>
+            </>
+    }
 
     return (
-
         <div className="product-details-container">
             <div className="all-products-return">
                 <Nav.Link href="/products">
@@ -36,13 +41,7 @@ function ProductDetailsPage() {
                 </Nav.Link>
             </div>
             {
-                isLoading &&
-                <>
-                    <h3 style={{ color: "white" }}>Collecting the plant from the greenhouse</h3>
-                </>
-            }
-            {
-                !isLoading &&
+                !loading &&
                 <div className="product-details">
                     <div>
                         <img src={product.

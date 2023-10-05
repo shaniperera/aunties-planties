@@ -1,7 +1,6 @@
 
 import "../HomePage.css";
 import { Link } from "react-router-dom";
-
 import recycle from "../assets/recycle.svg"
 import leaf from "../assets/leaf.svg"
 import truck from "../assets/truck.svg"
