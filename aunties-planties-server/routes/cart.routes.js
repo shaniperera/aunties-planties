@@ -19,7 +19,7 @@ router.get('/user/cart', (req, res) => {
         .catch(err => res.json(err));
 })
 
-//POST: to add/update cart
+// POST: to add / update cart
 router.post('/user/cart', (req, res) => {
     const { _id } = req.payload; // logged in userId
     const prodToAdd = { productId: req.body.productId, quantity: req.body.quantity }
@@ -45,7 +45,6 @@ router.post('/user/cart', (req, res) => {
 
                 } else {
                     currentUser.cart.push(prodToAdd);
-                    console.log(prodToAdd);
                 }
                 return currentUser.save().then(() => {
                     res.status(201).json(currentUser.cart);
@@ -60,9 +59,8 @@ router.post('/user/cart', (req, res) => {
         .catch(err => res.json(err));
 })
 
-//POST : delete product from cart
-router.delete('/user/cart', (req, res) => {
-
+// PUT: Delete product from cart
+router.put('/user/cart', (req, res) => {
     const { _id } = req.payload;
     const prodToDelete = { productId: req.body.productId }
 
@@ -79,7 +77,6 @@ router.delete('/user/cart', (req, res) => {
             }
 
             const indexToDelete = currentUser.cart.findIndex(item => item.productId.toString() === prodToDelete.productId);
-            console.log("indexToDelete: ", indexToDelete)
             if (indexToDelete !== -1) {
                 currentUser.cart.splice(indexToDelete, 1);
                 return currentUser.save().then(() => {
@@ -89,6 +86,19 @@ router.delete('/user/cart', (req, res) => {
                 res.status(404).json("Product not found in the user's cart");
                 return;
             }
+        })
+        .catch(err => res.json(err));
+})
+
+router.patch('/user/cart', (req, res) => {
+    const { _id } = req.payload;
+
+    User.findById({ _id })
+        .then(foundUser => {
+            foundUser.cart = [];
+            return foundUser.save().then(() => {
+                res.status(201).json(foundUser.cart);
+            })
         })
         .catch(err => res.json(err));
 })

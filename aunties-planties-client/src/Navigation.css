@@ -1,0 +1,11 @@
+.nav-bar {
+   padding: 0 10px;
+}
+
+.cart-qty{
+    border: 1px solid  ;
+    border-radius: 50%;
+    padding:10px;
+    color: rgb(174, 191, 174);
+    margin: .5em;
+}

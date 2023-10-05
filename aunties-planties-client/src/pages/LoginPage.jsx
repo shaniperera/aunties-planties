@@ -17,7 +17,6 @@ function LoginPage(props) {
     const handleEmail = (e) => setEmail(e.target.value);
     const handlePassword = (e) => setPassword(e.target.value);
 
-
     const handleLoginSubmit = (e) => {
         e.preventDefault();
         const requestBody = { email, password };
@@ -25,7 +24,6 @@ function LoginPage(props) {
             .then((response) => {
                 // Request to the server's endpoint `/auth/login` returns a response
                 // with the JWT string ->  response.data.authToken
-                console.log('JWT token', response.data.authToken);
 
                 storeToken(response.data.authToken);
                 // Verify the token by sending a request 
@@ -41,33 +39,37 @@ function LoginPage(props) {
     };
 
     return (
-        <div className="LoginPage">
-            <h1>Login</h1>
 
-            <form onSubmit={handleLoginSubmit}>
-                <label>Email:</label>
-                <input
-                    type="email"
-                    name="email"
-                    value={email}
-                    onChange={handleEmail}
-                />
+        <div className="auth-page-container">
+            <div className="login-page">
+                <h1>Login</h1>
 
-                <label>Password:</label>
-                <input
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={handlePassword}
-                />
+                <form className="auth-form" onSubmit={handleLoginSubmit}>
+                    <label>Email:</label>
+                    <input
+                        type="email"
+                        name="email"
+                        value={email}
+                        onChange={handleEmail}
+                    />
 
-                <button type="submit">Login</button>
-            </form>
-            {errorMessage && <p className="error-message">{errorMessage}</p>}
+                    <label>Password:</label>
+                    <input
+                        type="password"
+                        name="password"
+                        value={password}
+                        onChange={handlePassword}
+                    />
 
-            <p>No account yet?</p>
-            <Link to={"/auth/signup"}> Sign Up</Link>
+                    <button type="submit">Login</button>
+                </form>
+                {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+                <p>No account yet?</p>
+                <Link to={"/auth/signup"}> Sign Up</Link>
+            </div>
         </div>
+
     )
 }
 
