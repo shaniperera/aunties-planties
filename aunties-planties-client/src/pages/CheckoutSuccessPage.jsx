@@ -18,7 +18,6 @@ function CheckoutSuccessPage() {
             .catch((error) => console.log(error));
     }, []);
 
-
     return (
         <div className="success-container">
             <div className="success-message">
@@ -29,7 +28,6 @@ function CheckoutSuccessPage() {
                 <Link to="/products">
                     <button>Shop now!</button>
                 </Link>
-
             </div>
         </div>
     )

@@ -70,7 +70,7 @@ function ProductListPage() {
     //             list.push(products[i])
     //         }
     //     }
-    //     setProducts(list);
+    //     setFilteredProducts(list);
     // }
 
     // const filterOutdoor = () => {
@@ -80,7 +80,7 @@ function ProductListPage() {
     //             list.push(products[i])
     //         }
     //     }
-    //     setProducts(list);
+    //     setFilteredProducts(list);
     // }
 
     // const filterGifts = () => {
@@ -91,15 +91,15 @@ function ProductListPage() {
     //             list.push(products[i])
     //         }
     //     }
-    //     setProducts(list);
+    //     setFilteredProducts(list);
     // }
 
     return (
-        <div className="project-list-container">
+        <div className="product-list-container">
             {
                 !loading &&
                 <div className="search-filter">
-                    <Search filterSearchHandler={searchProductList} />
+                    <Search className="search-bar" filterSearchHandler={searchProductList} />
 
                     <Dropdown className="product-sort">
                         <Dropdown.Toggle variant="success" id="dropdown-basic">
