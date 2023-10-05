@@ -1,7 +1,7 @@
-body {
+* {
   margin: 0;
-  min-width: 320px;
-  min-height: 100vh; 
+  padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 } 
 
 a {
@@ -10,51 +10,33 @@ a {
   text-decoration: inherit;
 }
 
-.product-list {
-  display: flex;
-  margin: 2em;
-  gap: 2em; 
-  flex-wrap: wrap;
-  
-}
-.product-card-img {
-  /* max-width: 100%; */
-  max-height: 12em;
 
+.auth-page-container {
+    background-image: url('https://wallpapercave.com/wp/wp6897369.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 6em;
+  height: 100vh;
 }
 
-.cart-page {
-  display:flex;
-  justify-content: space-evenly;
-  gap:5em
-}
-
-.cart-item-row{
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-.cart-item-row img {
-  max-width:6em
-}
-
-/* style={{ marginTop: 'auto' }} */
-.search-bar{
-
+ .login-page, .signup-page{
+  background-color: white;
+    border-radius: 4px;
+  width: 50%;
+  margin: 0 auto;
+  padding: 3em
+ }
+.auth-form {
     display: flex;
-    justify-content: center;
-
-
+    flex-direction: column;
+    padding: 1em;
 }
 
-.search-input {
-    width: 60%;
-    height: 40px;
-    padding: 10px;
-    border-radius: 10px;
-    border: 2px solid #d1d1d1;
-    background: none;
-    outline: none;
-    align-content: center;
-    float: -5;
+.auth-form button {
+  margin-top: 20px;
+  padding: 5px;
+  background-color: rgb(174, 191, 174);
+  color: white;
+  text-transform: uppercase;
+  font-weight: 600;
 }

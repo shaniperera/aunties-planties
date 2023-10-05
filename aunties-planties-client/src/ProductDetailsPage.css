@@ -1,0 +1,39 @@
+
+.product-details-container
+{
+    background-image: url('https://wallpapercave.com/wp/wp6897369.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* height: 100vh; */
+  padding: 2em;
+}
+
+.product-details {
+    background-color: white;
+    display: flex;
+    padding: 0 2em;
+    width: 70%;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+     text-align: justify;
+}
+
+.product-details img {
+    width: 90%;
+ 
+}
+.product-description {
+    padding: 2em
+}
+
+.product-reqs {
+    margin: 2em;
+    text-align: justify;
+}
+.all-products-return {
+    padding: 2em;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+}

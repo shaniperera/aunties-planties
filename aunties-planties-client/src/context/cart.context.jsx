@@ -6,7 +6,6 @@ const CartContext = createContext();
 
 function CartProviderWrapper(props) {
     const [cartQuantity, setCartQuantity] = useState(0);
-    console.log(cartQuantity)
 
     const getCartTotalQty = () => {
 

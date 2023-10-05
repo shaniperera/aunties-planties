@@ -1,0 +1,33 @@
+.success-container {
+    background-image: url('https://wallpapercave.com/wp/wp6897369.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    padding: 10em 15em 0
+
+}
+.success-message {
+    background-color: white;
+    padding: 2em;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.success-message button{
+     background-color:rgb(174, 191, 174);
+    padding: 1em 3em;
+    border-radius: 3px;
+    border: none;
+    font-size: medium;
+    font-weight: 600;
+    margin-left: 1em
+    
+}
+.success-message button:hover {
+ background-color:rgb(174, 191, 174);
+  color: white;
+}
+.success-message a{
+    text-decoration: none;
+    color: white
+}

@@ -6,6 +6,7 @@ import { Card, Button } from 'react-bootstrap';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { AuthContext } from "../context/auth.context";
+import { CartContext } from '../context/cart.context';
 
 const API_URL = "http://localhost:5005/api";
 
@@ -15,6 +16,7 @@ function ProductCard({ product }) {
     const loginNotify = () => toast("Login to add products to your cart");
     const outOfStockNotify = () => toast("Sorry, this plant is current not in stock");
 
+
     const handleAddToCart = (e) => {
         e.preventDefault();
         const storedToken = localStorage.getItem("authToken");
@@ -22,11 +24,12 @@ function ProductCard({ product }) {
 
         axios.post(`${API_URL}/user/cart`, requestBody, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then((response) => {
-                console.log(response)
                 setAddedToCart(true)
+                getCartTotalQty();
             })
             .catch((error) => console.log(error));
     }
+    const { getCartTotalQty } = useContext(CartContext);
 
     return (
         <Card style={{ width: '15rem' }}>

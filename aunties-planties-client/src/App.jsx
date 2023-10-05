@@ -1,4 +1,3 @@
-import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
@@ -8,7 +7,7 @@ import ProductDetailsPage from "./pages/ProductDetailsPage";
 import CartPage from "./pages/CartPage";
 import SignupPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
-
+import CheckoutSuccessPage from "./pages/CheckoutSuccessPage";
 
 function App() {
   return (
@@ -21,6 +20,7 @@ function App() {
         <Route path="/products" element={<ProductListPage />} />
         <Route path="/products/:productId" element={<ProductDetailsPage />} />
         <Route path="/user/cart" element={<CartPage />} />
+        <Route path="/checkout-success" element={<CheckoutSuccessPage />} />
         <Route path="/auth/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
 
