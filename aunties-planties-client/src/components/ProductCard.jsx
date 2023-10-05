@@ -8,7 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { AuthContext } from "../context/auth.context";
 import { CartContext } from '../context/cart.context';
 
-const API_URL = "http://localhost:5005/api";
+const API_URL = import.meta.env.VITE_SERVER_URL;
 
 function ProductCard({ product }) {
     const { isLoggedIn } = useContext(AuthContext);
