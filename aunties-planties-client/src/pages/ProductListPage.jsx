@@ -11,7 +11,8 @@ function ProductListPage() {
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([])
     const [sortName, setSortName] = useState("Sort By");
-    const [isLoading, setIsLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
+
 
     // We set this effect will run only once, after the initial render
     // by setting the empty dependency array - []
@@ -21,9 +22,10 @@ function ProductListPage() {
             .then((response) => {
                 setProducts(response.data)
                 setFilteredProducts(response.data)
-                setIsLoading(false);
+                setLoading(false);
             })
-            .catch((error) => console.log(error));
+            .catch((error) => console.log(error))
+            .finally(() => setLoading(false));
     }
     useEffect(() => {
         handleFetch()
@@ -57,6 +59,9 @@ function ProductListPage() {
         }
         setFilteredProducts(filtered);
     };
+    if (loading) {
+        return <h3>Collecting the plants from the greenhouse... 🪴</h3>
+    }
 
     // const filterIndoor = () => {
     //     let list = []
@@ -92,13 +97,7 @@ function ProductListPage() {
     return (
         <div className="project-list-container">
             {
-                isLoading &&
-                <>
-                    <h3 style={{ color: "white" }}>Collecting the plants from the greenhouse</h3>
-                </>
-            }
-            {
-                !isLoading &&
+                !loading &&
                 <div className="search-filter">
                     <Search filterSearchHandler={searchProductList} />
 
