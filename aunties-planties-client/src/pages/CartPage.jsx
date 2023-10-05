@@ -2,7 +2,6 @@ import "../CartPage.css";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Table } from 'react-bootstrap';
 import CartItem from "../components/CartItem.jsx";
 import PayButton from "../components/PayButton.jsx";
 import { CartContext } from '../context/cart.context';
@@ -10,6 +9,7 @@ import { CartContext } from '../context/cart.context';
 const API_URL = import.meta.env.VITE_SERVER_URL;
 
 function CartPage() {
+    let shippingFee = 10;
     const [cartProducts, setCartProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const { getCartTotalQty } = useContext(CartContext);
@@ -50,9 +50,6 @@ function CartPage() {
 
     }
 
-    let shippingFee = 10;
-    // We set this effect will run only once, after the initial render
-    // by setting the empty dependency array - []
     useEffect(() => {
         getCart();
     }, []);
@@ -89,12 +86,11 @@ function CartPage() {
                     <section className="cart-total-aside">
                         <h5>Cart summary: </h5>
                         <p>Subtotal : ${calculateCartTotal(cartProducts)}</p>
-
                         <p>Shipping: ${shippingFee}</p>
                         <hr />
                         <h5> Total: ${calculateCartTotal(cartProducts) + shippingFee}</h5>
                         <PayButton cartItems={cartProducts} />
-                        <p>
+                        <p className='keep-shopping'>
                             <Link to="/products">
                                 Keep Shopping
                             </Link>

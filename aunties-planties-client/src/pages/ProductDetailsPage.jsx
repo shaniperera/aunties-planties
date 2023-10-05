@@ -66,33 +66,6 @@ function ProductDetailsPage() {
                     </div>
                 </div>
             }
-            {/* 
-            {product && (
-                // <div className="product-details">
-                //     <div>
-                //         <img src={product.
-                //             imageUrl} alt={product.name} />
-                //     </div>
-                //     <div className="product-description ">
-                //         <h4>{product.name}</h4>
-                //         <p> <i>{product.botanicalName}</i></p>
-                //         <p>{product.description}</p>
-                //         <p>Pet friendly: {product.petFriendly ? "yes" : "no"}</p>
-                //         <p>Placement: {product.placement}</p>
-                //         <h6>Price: ${product.price}</h6>
-                //         {
-                //             !product.inStock && <p style={{ color: 'red' }}>Out of stock</p>
-                //         }
-
-                //         <div className="product-reqs">
-                //             <h5>Plant care</h5>
-                //             <p>💧 Water: {product.feedingRequirements?.water}</p>
-                //             <p>🌡️ Humidity: {product.feedingRequirements?.humidity}</p>
-                //             <p>☀️ Sun: {product.feedingRequirements?.sun}</p>
-                //         </div>
-                //     </div>
-                // </div>
-            )} */}
         </div>
     );
 }
