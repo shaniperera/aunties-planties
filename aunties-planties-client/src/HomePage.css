@@ -29,16 +29,16 @@ padding: 3em
 .why-shop-tiles {
 display: flex;
 justify-content: space-evenly;
-
+text-align: center;
 }
 
 .why-shop-tiles img {
- width: 10em;
+ width: 6em;
+ opacity: 0.6;
 }
 .about-us {
   display: flex;
   background-color: rgb(174, 191, 174);
-
 }
 
 .about-us-text {
@@ -47,12 +47,10 @@ justify-content: space-evenly;
   margin: 1em;
  background-color: rgb(174, 191, 174);
   text-align: justify; 
-
 }
 
 .about-us-text h2 {
     padding: 6em 1em  0;
-
     background-color: rgb(174, 191, 174);
     color: white;
 }

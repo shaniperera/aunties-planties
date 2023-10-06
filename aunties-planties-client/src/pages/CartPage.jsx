@@ -92,7 +92,7 @@ function CartPage() {
                         <PayButton cartItems={cartProducts} />
                         <p className='keep-shopping'>
                             <Link to="/products">
-                                Keep Shopping
+                                Keep shopping
                             </Link>
                         </p>
                     </section>
