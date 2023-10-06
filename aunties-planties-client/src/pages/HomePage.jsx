@@ -25,7 +25,7 @@ function HomePage() {
                     </div>
                     <div>
                         <img src={recycle} alt="" />
-                        <p>Recycled pots</p>
+                        <p>Grown in reused pots</p>
                     </div>
                     <div>
                         <img src={truck} alt="" />
