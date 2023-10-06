@@ -60,7 +60,7 @@ function ProductListPage() {
         setFilteredProducts(filtered);
     };
     if (loading) {
-        return <h3>Collecting the plants from the greenhouse... 🪴</h3>
+        return <h3>loading...</h3>
     }
 
     // const filterIndoor = () => {
