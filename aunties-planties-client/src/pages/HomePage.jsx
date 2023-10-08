@@ -1,6 +1,8 @@
 
 import "../HomePage.css";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { CartContext } from '../context/cart.context';
 import recycle from "../assets/recycle.svg"
 import leaf from "../assets/leaf.svg"
 import truck from "../assets/truck.svg"
@@ -8,6 +10,8 @@ import truck from "../assets/truck.svg"
 import plantsTogether from "../assets/plants-together.jpeg"
 
 function HomePage() {
+    const { getCartTotalQty } = useContext(CartContext);
+    getCartTotalQty();
     return (
         <div className='homepage-container'>
             <section className="hero-section">
