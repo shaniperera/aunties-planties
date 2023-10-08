@@ -17,9 +17,6 @@ function CartProviderWrapper(props) {
         if (isLoggedIn) {
             axios.get(
 
-                // `${API_URL}/user/cart`
-
-
                 `${API_URL}/user/cart`,
                 { headers: { Authorization: `Bearer ${storedToken}` } }
             )
