@@ -1,7 +1,7 @@
 # Aunties Planties
 
 ![Alt text](./aunties-planties-client/src/assets/new-logo.png)
-
+#### [Link for live deployed version](https://aunties-planties.netlify.app)
 
 ## Table of Contents
 

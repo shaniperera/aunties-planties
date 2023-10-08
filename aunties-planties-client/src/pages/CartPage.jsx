@@ -52,6 +52,7 @@ function CartPage() {
 
     useEffect(() => {
         getCart();
+        getCartTotalQty();
     }, []);
 
     if (loading) {
